@@ -1,7 +1,7 @@
-const userModel = require('../models/userModel.js');
+const userModel = require('../model/userModel');
 const jwt = require('jsonwebtoken');
 
-//-----------------------------------------------------------------------------------------------//
+//---------------------------------POST/USER--------------------------------------------------------------//
 
 const createUser = async function (req, res) {
   try {
@@ -14,7 +14,8 @@ const createUser = async function (req, res) {
 
     let nameRegex = /^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$/;
     let mailRegex = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
-    let passRegex = /^(?=.[0-9])(?=.[!@#$%^&])[a-zA-Z0-9!@#$%^&]{6,16}$/;
+  
+    let passRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
     if (!userData.fname)
       return res
@@ -55,7 +56,7 @@ const createUser = async function (req, res) {
     if (!userData.password)
       return res.status(400).send({ status: false, msg: 'password required' });
 
-    if (!passRegex.test(userData.password))
+     if (!passRegex.test(userData.password))
       return res.status(400).send({
         msg: 'Please enter a password which contains min 8 letters, at least a symbol, upper and lower case letters and a number',
       });
@@ -68,7 +69,7 @@ const createUser = async function (req, res) {
   }
 };
 
-//-----------------------------------------------------------------------------------------------//
+//------------------------------------LOGIN/USER-----------------------------------------------------------//
 
 const loginUser = async function (req, res) {
   try {
@@ -107,7 +108,7 @@ const loginUser = async function (req, res) {
   }
 };
 
-//------------------------------------------------------------------------------------//
+//---------------------------------GET?USER---------------------------------------------------//
 
 const getAllUser = async function (req, res) {
   try {
@@ -120,7 +121,7 @@ const getAllUser = async function (req, res) {
   }
 };
 
-//------------------------------------------------------------------------------//
+//-----------------------------------UPDATE/USER-------------------------------------------//
 
 const updateUser = async function (req, res) {
   try {
@@ -143,7 +144,7 @@ const updateUser = async function (req, res) {
   }
 };
 
-//-----------------------------------------------------------------------------------------------//
+//-------------------------------------DELETE/USER----------------------------------------------------------//
 
 const deleteByParams = async function (req, res) {
   try {

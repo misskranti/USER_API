@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 
-//------------------------------------------------------------------------------------------//
+//-----------------------------------AUTHENTICATION-------------------------------------------------------//
 
 const authenticate = function (req, res, next) {
   try {
@@ -21,13 +21,13 @@ const authenticate = function (req, res, next) {
   }
 };
 
-//------------------------------------------------------------------------------------------//
+//---------------------------------------AUTHORISATION---------------------------------------------------//
 
 const authorise = async function (req, res, next) {
   try {
     token = req.headers['x-api-key'];
 
-    let userId = req.params.studentId;   
+    let userId = req.params.userId;   
 
     let decodedToken = jwt.verify(token, 'project_assignment');
 
